@@ -1,37 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Apps extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { liked: false };
-	}
-
-	handleClick(e) {
-		console.log(e);
-		console.log(5678);
-		this.setState({ liked: !this.state.liked });
-	}
-
-	render() {
-		const text = this.state.liked ? 'like' : 'haven\'t liked';
-		return (
-			<p onClick={this.handleClick.bind(this)}>
-				You {text} this. Click to toggle.
-			</p>
-		);
-	}
-}
-
-var tableContent = [];
-var tableData = [
+var tableData = [ // Default table contain
 	{seq:1, status:"open", cate:"cat1", title:"title1", owner:"Allen", prio:"P1"},
 	{seq:2, status:"open", cate:"cat1", title:"title2", owner:"Allen", prio:"P2"},
 	{seq:3, status:"close", cate:"cat2", title:"title3", owner:"Allen", prio:"P3"},
 	{seq:4, status:"pending", cate:"cat3", title:"title4", owner:"Allen", prio:"P2"},
 	{seq:5, status:"process", cate:"cat4", title:"title5", owner:"Allen", prio:"P1"}
 ];
-class TableRow extends React.Component{ //For create table contain
+
+class TableRow extends React.Component{ // For create table contain
 	render(){
 		return(
 			<tr>
@@ -45,7 +23,8 @@ class TableRow extends React.Component{ //For create table contain
 		);
 	};
 }
-class InsertButton extends React.Component{
+
+class InsertButton extends React.Component{ // For handle input function
 	render(){
 		console.log(this.props);
 		return(
@@ -54,7 +33,7 @@ class InsertButton extends React.Component{
 	};
 }
 
-class TableContain extends React.Component{
+class TableContain extends React.Component{ // For display table
 	render(){
 		var rows = [];
 		var key = "";
@@ -83,7 +62,7 @@ class TableContain extends React.Component{
 	};
 }
 
-class ReactTable extends React.Component {
+class ReactTable extends React.Component { // Main React table component
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -115,5 +94,5 @@ class ReactTable extends React.Component {
 		);
 	};
 }
-ReactDOM.render(<Apps />, document.getElementById('app'));
+
 ReactDOM.render(<ReactTable data={tableData} />, document.getElementById('table'));
