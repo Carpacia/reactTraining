@@ -9,57 +9,52 @@ var tableData = [ // Default table contain
 	{seq:5, status:"process", cate:"cat4", title:"title5", owner:"Allen", prio:"P1"}
 ];
 
-class TableRow extends React.Component{ // For create table contain
-	render(){
-		return(
-			<tr>
- 				<td>{this.props.seq}</td>
- 				<td>{this.props.item.status}</td>
- 				<td>{this.props.item.cate}</td>
- 				<td>{this.props.item.title}</td>
- 				<td>{this.props.item.owner}</td>
- 				<td>{this.props.item.prio}</td>
- 			</tr>
-		);
-	};
+function TableRow(props){ // For create table contain
+	return(
+		<tr>
+			<td>{props.seq}</td>
+			<td>{props.item.status}</td>
+			<td>{props.item.cate}</td>
+			<td>{props.item.title}</td>
+			<td>{props.item.owner}</td>
+			<td>{props.item.prio}</td>
+		</tr>
+	);
 }
 
-class InsertButton extends React.Component{ // For handle input function
-	render(){
-		console.log(this.props);
-		return(
-			<input type="button" value="Insert" onClick={this.props.insert} />
-		);
-	};
+function InsertButton(props){
+	console.log("[InsertButton]");
+	console.log(props);
+	return(
+		<input type="button" value="Insert" onClick={props.insert} />
+	);
 }
 
-class TableContain extends React.Component{ // For display table
-	render(){
-		var rows = [];
-		var key = "";
-		for(var i = 0; i < this.props.data.length; i++){
-			// console.log(this.props.data[i]);
-			key = "item" + i;
-			rows.push(<TableRow item={this.props.data[i]} key={key} seq={i+1} />);
-		}
-		return(
-			<table>
-				<thead>
-					<tr>
-						<td>seq</td>
-						<td>Status</td>
-						<td>Category</td>
-						<td>Title</td>
-						<td>Owner</td>
-						<td>Priority</td>
-					</tr>
-				</thead>
-				<tbody>
-				{rows}
-				</tbody>
-			</table>
-		);
-	};
+function TableContain(props){ // For display table
+	var rows = [];
+	var key = "";
+	for(var i = 0; i < props.data.length; i++){
+		// console.log(this.props.data[i]);
+		key = "item" + i;
+		rows.push(<TableRow item={props.data[i]} key={key} seq={i+1} />);
+	}
+	return(
+		<table>
+			<thead>
+				<tr>
+					<td>seq</td>
+					<td>Status</td>
+					<td>Category</td>
+					<td>Title</td>
+					<td>Owner</td>
+					<td>Priority</td>
+				</tr>
+			</thead>
+			<tbody>
+			{rows}
+			</tbody>
+		</table>
+	);
 }
 
 class ReactTable extends React.Component { // Main React table component
